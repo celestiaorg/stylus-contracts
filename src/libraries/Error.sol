@@ -161,3 +161,6 @@ error AlreadyValidDASKeyset(bytes32);
 
 /// @dev Tried to use or invalidate an already invalid Data Availability Service keyset
 error NoSuchKeyset(bytes32);
+
+/// @dev Thrown when Blobstream verification fails for a Celestia Data Root
+error NoSuchDataRoot(bytes32);

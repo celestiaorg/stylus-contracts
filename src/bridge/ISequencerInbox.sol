@@ -6,6 +6,7 @@
 pragma solidity >=0.6.9 <0.9.0;
 pragma experimental ABIEncoderV2;
 
+import "../data-availability/IDAOracle.sol";
 import "../libraries/IGasRefunder.sol";
 import "./IDelayedMessageProvider.sol";
 import "./IBridge.sol";
@@ -56,6 +57,10 @@ interface ISequencerInbox is IDelayedMessageProvider {
 
     function bridge() external view returns (IBridge);
 
+    /// @dev address of the Blobstream contract to use for Celestia messages
+    // solhint-disable-next-line func-name-mixedcase
+    function BLOBSTREAM() external view returns (address);
+
     /// @dev The size of the batch header
     // solhint-disable-next-line func-name-mixedcase
     function HEADER_LENGTH() external view returns (uint256);
@@ -76,15 +81,7 @@ interface ISequencerInbox is IDelayedMessageProvider {
         uint64 creationBlock;
     }
 
-    function maxTimeVariation()
-        external
-        view
-        returns (
-            uint256,
-            uint256,
-            uint256,
-            uint256
-        );
+    function maxTimeVariation() external view returns (uint256, uint256, uint256, uint256);
 
     function dasKeySetInfo(bytes32) external view returns (bool, uint64);
 
